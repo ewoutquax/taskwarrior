@@ -5,6 +5,7 @@ gem 'puma', '~> 3.0'
 
 # Storage
 gem 'sqlite3'
+gem 'objection'
 
 # Asset pipeline
 gem 'jquery-rails'
@@ -17,7 +18,6 @@ gem 'turbolinks', '~> 5'
 gem 'slim-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'jbuilder', '~> 2.5'
-
 
 group :development do
   gem 'better_errors'

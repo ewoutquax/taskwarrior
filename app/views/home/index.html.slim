@@ -1,4 +1,12 @@
 h1 Pending tasks
 table.tasks
-  tr
-    td MyFirstTask
+  th Description
+  th Next action
+  th Website
+  th Project
+  - @tasks.each do |task|
+    tr
+      td= task.description
+      td= task.next_action
+      td= task.website
+      td= task.project
