@@ -1,4 +1,5 @@
 h1 Pending tasks
+= link_to('Reset filters', root_path)
 table.tasks
   th Description
   th Next action
@@ -8,5 +9,5 @@ table.tasks
     tr
       td= task.description
       td= task.next_action
-      td= task.website
-      td= task.project
+      td= link_to(task.website, root_path(website: task.website))
+      td= link_to(task.project, root_path(project: task.project))
