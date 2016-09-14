@@ -6,6 +6,7 @@ RSpec.feature 'Home', type: :feature do
     then_i_see_the_app_name
     and_i_see_the_main_report
     and_i_can_add_a_task
+    and_i_can_see_a_pending_task
   end
 
   def when_i_am_on_the_homepage
@@ -24,5 +25,11 @@ RSpec.feature 'Home', type: :feature do
 
   def and_i_can_add_a_task
     expect(page).to have_link 'Add task'
+  end
+
+  def and_i_can_see_a_pending_task
+    within('table.tasks') do
+      expect(page).to have_content('MyFirstTask')
+    end
   end
 end

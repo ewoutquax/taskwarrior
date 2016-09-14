@@ -1,0 +1,24 @@
+[
+  {
+    "annotations": [
+      {
+        "description": "First annotation to the task",
+        "entry": "20160905T083309Z"
+      }
+    ],
+    "description": "Task-description",
+    "entry": "20160819T074753Z",
+    "id": 1,
+    "mail_body": "Mail-body text",
+    "modified": "20160905T083332Z",
+    "next_action": "Next action text",
+    "project": "Development",
+    "status": "pending",
+    "tags": [
+      "testing"
+    ],
+    "urgency": 2.74247,
+    "uuid": "35bdb52d-da98-4f85-8229-adcb160c1a9e",
+    "website": "TaskWarriorWeb"
+  }
+]
