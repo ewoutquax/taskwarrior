@@ -6,6 +6,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :tasks, only: :none do
+    collection do
+      post :sync
+    end
+  end
 
   root to: 'home#index'
 end

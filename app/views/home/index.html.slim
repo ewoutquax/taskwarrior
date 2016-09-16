@@ -18,7 +18,7 @@
             td= link_to(task.website, root_path(website: task.website))
             td= link_to(task.project, root_path(project: task.project))
 
-.btn.btn-primary[data-toggle="modal" data-target="#task_detail"] Task details
+= link_to('Sync', sync_tasks_path, class: 'btn btn-primary', method: :post)
 
 .modal.fade.in#task_detail[aria-labelledby="myLargeModalLabel" role="dialog"]
   .modal-dialog.modal-lg
