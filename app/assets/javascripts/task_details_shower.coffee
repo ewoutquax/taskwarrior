@@ -26,16 +26,19 @@ class @TaskDetailsShower
     @list.find('dd').html('')
 
   showModelWithDetails: (data) ->
+    time = new TimeFormatter(data.entry)
+
     @list.find('.modal-title').html(data.description)
     @list.find('.next_action').html(data.next_action)
     @list.find('.website').html(data.website)
     @list.find('.project').html(data.project)
-    @list.find('.created').html(data.entry)
+    @list.find('.created').html(time.short())
 
     @list.find('#annotations').empty()
     $.each(data.annotations, (idx, annotation) =>
+      time = new TimeFormatter(annotation.entry)
       item = $('<li>')
       item.addClass('list-group-item')
-      item.html("<strong>#{annotation.entry}</strong><br />#{annotation.description}")
+      item.html("<strong>#{time.short()}</strong><br />#{annotation.description}")
       @list.find('#annotations').append(item)
     )

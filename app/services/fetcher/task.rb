@@ -8,7 +8,14 @@ module Fetcher
     end
 
     def self.by_uuid(uuid)
-      TaskWarrior::ByUuidFetcher.invoke(uuid)
+      task = TaskWarrior::ByUuidFetcher.invoke(uuid)
+      task.entry = Time.parse(task.entry).strftime('%Y-%m-%dT%H:%MZ')
+      if task.annotations
+        task.annotations.each do |annotation|
+          annotation.entry = Time.parse(annotation.entry).strftime('%Y-%m-%dT%H:%MZ')
+        end
+      end
+      task
     end
   end
 end
