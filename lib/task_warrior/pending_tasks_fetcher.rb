@@ -5,7 +5,7 @@ module TaskWarrior
         list << "#{key}=#{value}"
       end.join(' ')
 
-      result = TaskWarrior::Communicator.execute("task export +PENDING #{extend}")
+      result = TaskWarrior::Communicator.execute("task export +PENDING #{extend}".strip)
 
       items = JSON.parse(result)
       items.inject([]) do |list, item|

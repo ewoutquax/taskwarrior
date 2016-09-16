@@ -1,13 +1,42 @@
-h1 Pending tasks
-= link_to('Reset filters', root_path)
-table.tasks
-  th Description
-  th Next action
-  th Website
-  th Project
-  - @tasks.each do |task|
-    tr
-      td= task.description
-      td= task.next_action
-      td= link_to(task.website, root_path(website: task.website))
-      td= link_to(task.project, root_path(project: task.project))
+.row
+  .col-xs-12
+    h1 Pending tasks
+    = link_to('Reset filters', root_path)
+.row
+  .col-xs-12
+    table.table.table-striped.table-condensed#tasks
+      thead
+        th Description
+        th Next action
+        th Website
+        th Project
+      tbody
+        - @tasks.each do |task|
+          tr[data-uuid=task.uuid]
+            td[data-toggle="modal" data-target="#task_detail"]= task.description
+            td= task.next_action
+            td= link_to(task.website, root_path(website: task.website))
+            td= link_to(task.project, root_path(project: task.project))
+
+.btn.btn-primary[data-toggle="modal" data-target="#task_detail"] Task details
+
+.modal.fade.in#task_detail[aria-labelledby="myLargeModalLabel" role="dialog"]
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close[aria-label="Close" data-dismiss="modal" type="button"]
+          span[aria-hidden="true"] ×
+        h4.modal-title Task Details
+      .modal-body
+        .row
+          .col-xs-8
+            dl.dl-horizontal
+              dt Next action
+              dd.next_action
+          .col-xs-4
+            .well
+              dl.dl-horizontal#task_meta
+                dt Website
+                dd.website
+                dt Project
+                dd.project
