@@ -7,7 +7,7 @@ class TaskForm < BaseForm
 
     def params_for_create
       @params.require(:task).permit(
-        :description
+        :description, :next_action, :website, :project
       )
     end
 end
