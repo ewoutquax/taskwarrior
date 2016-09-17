@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tasks, only: :none do
+  resources :tasks, only: [:new, :create] do
     collection do
       post :sync
     end

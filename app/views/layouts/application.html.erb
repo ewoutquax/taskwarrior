@@ -31,7 +31,9 @@
             <%= link_to('Pending', '#') %>
             </li>
           </ul>
-          <p class="navbar-text navbar-right"><a href="#" class="navbar-link">Add task</a></p>
+          <p class="navbar-text navbar-right">
+            <%= link_to 'Add task', new_task_path, class: 'navbar-link' %>
+          </p>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
@@ -42,7 +44,7 @@
     <br />
     <br />
     <br />
-    <div class="container-fluid">
+    <div class="container">
       <%= yield %>
     </div>
   </body>
