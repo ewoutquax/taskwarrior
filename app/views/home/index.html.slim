@@ -8,6 +8,7 @@
       thead
         th Description
         th Next action
+        th Tags
         th Website
         th Project
       tbody
@@ -15,6 +16,9 @@
           tr[data-uuid=task.uuid]
             td[data-toggle="modal" data-target="#task_detail"]= task.description
             td= task.next_action
+            td
+              - if task.tags
+                == task.tags.join('<br />')
             td= link_to(task.website, root_path(website: task.website))
             td= link_to(task.project, root_path(project: task.project))
 
@@ -29,20 +33,30 @@
         h4.modal-title Task Details
       .modal-body
         .row
-          .col-xs-8
-            dl.dl-horizontal
-              dt Next action
-              dd.next_action
+          .col-xs-12
+            .col-xs-8
+              dl.dl-horizontal
+                dt Next action
+                dd.next_action
+                dt Mailtext
+                dd.mail_body
 
-            strong Annotations
-            ul.list-group#annotations
+              strong Annotations
+              ul.list-group#annotations
 
-          .col-xs-4
-            .well
-              dl.dl-horizontal#task_meta
-                dt Created
-                dd.created
-                dt Website
-                dd.website
-                dt Project
-                dd.project
+            .col-xs-4
+              .row
+                .cols-xs-12
+                  .well
+                    dl.dl-horizontal#task_meta
+                      dt Created
+                      dd.created
+                      dt Website
+                      dd.website
+                      dt Project
+                      dd.project
+              .row
+                .cols-xs-12
+                  .panel.panel-primary
+                    .panel-heading Tags
+                    .panel-body#tags

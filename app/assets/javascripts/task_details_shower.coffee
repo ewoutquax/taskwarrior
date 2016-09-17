@@ -2,6 +2,7 @@ class @TaskDetailsShower
   constructor: (container) ->
     @table = container
     @list = $('#task_detail')
+    @tags = $('#tags')
 
   activateBinds: ->
     @table.find('tbody tr').find('td:first').each (_idx, element) =>
@@ -24,12 +25,14 @@ class @TaskDetailsShower
 
   clearDetails: ->
     @list.find('dd').html('')
+    @tags.empty()
 
   showModelWithDetails: (data) ->
     time = new TimeFormatter(data.entry)
 
     @list.find('.modal-title').html(data.description)
     @list.find('.next_action').html(data.next_action)
+    @list.find('.mail_body').html(data.mail_body)
     @list.find('.website').html(data.website)
     @list.find('.project').html(data.project)
     @list.find('.created').html(time.short())
@@ -41,4 +44,9 @@ class @TaskDetailsShower
       item.addClass('list-group-item')
       item.html("<strong>#{time.short()}</strong><br />#{annotation.description}")
       @list.find('#annotations').append(item)
+    )
+
+    $.each(data.tags, (idx, tag) =>
+      @tags.append(tag)
+      @tags.append('<br />')
     )
