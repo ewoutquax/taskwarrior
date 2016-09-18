@@ -3,27 +3,37 @@ require 'rails_helper'
 RSpec.describe Api::V1::TasksController, type: :controller do
 
   describe "GET #index" do
-    it "returns http success" do
-      get :show, id: '9f0afa07-235b-4c1f-82a9-3e95f1b56698', format: :json
-      expect(response).to have_http_status(:success)
+    before do
+      tasks = File.read(fixture_path + '/pending_tasks.json')
+      expect(TaskWarrior::Communicator).to receive(:execute).with('task export uuid:35bdb52d-da98-4f85-8229-adcb160c1a9e').and_return(tasks)
 
+      get :show, id: '35bdb52d-da98-4f85-8229-adcb160c1a9e', format: :json
+    end
+
+    it "returns http success" do
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'returns details of the task' do
       expected_output = {
-        "id"          => 17,
-        "description" => "Operatie cancel",
-        "entry"       => "2016-09-12T13:27Z",
-        "modified"    => "20160912T133921Z",
-        "project"     => "public_api.2_0",
-        "status"      => "pending",
-        "uuid"        => "9f0afa07-235b-4c1f-82a9-3e95f1b56698",
-        "website"     => "ugo",
-        "annotations" => [{
-          "entry"       => "2016-09-12T13:27Z",
-          "description" => "Gaat die op order of op trip-niveau?"
-        }, {
-          "entry"       => "2016-09-12T13:39Z",
-          "description" => "Probeer gebruik te maken van de annulerings-functionaliteit van Alexander"
+        'annotations' => [{
+          'description' => 'First annotation to the task',
+          'entry'       => '2016-09-05T08:33Z'
         }],
-        "urgency" => 1.92192
+        'description' => 'Task-description',
+        'entry'       => '2016-08-19T07:47Z',
+        'id'          => 1,
+        'mail_body'   => 'Mail-body text',
+        'modified'    => '20160905T083332Z',
+        'next_action' => 'Next action text',
+        'project'     => 'Development',
+        'status'      => 'pending',
+        'tags' => [
+          'testing'
+        ],
+        'urgency' => 2.74247,
+        'uuid'    => '35bdb52d-da98-4f85-8229-adcb160c1a9e',
+        'website' => 'TaskWarriorWeb'
       }
 
       expect(JSON.parse(response.body)).to eq(expected_output)

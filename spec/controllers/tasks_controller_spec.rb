@@ -14,7 +14,7 @@ RSpec.describe TasksController, type: :controller do
   context 'create' do
     before do
       payload = {
-        task_form_values: {
+        task: {
           description: 'my new task'
         }
       }

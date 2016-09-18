@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Fetcher::Task do
   context 'pending_tasks' do
-    let(:response) { Fetcher::Task.pending_tasks }
+    let(:response) { Fetcher::Task.pending_tasks({}) }
 
     context 'without present tasks' do
       before do
