@@ -1,0 +1,4 @@
+.row
+  .col-12-xs
+    = form_for(@task_form, method: :put, url: task_path(@task_form.model.uuid)) do |f|
+      = render partial: 'form', locals: {f: f}

@@ -37,6 +37,8 @@ class @TaskDetailsShower
     @list.find('.project').html(data.project)
     @list.find('.created').html(time.short())
 
+    @list.find('#edit-task').attr('href', "/tasks/#{data.uuid}/edit")
+
     @list.find('#annotations').empty()
     $.each(data.annotations, (idx, annotation) =>
       time = new TimeFormatter(annotation.entry)

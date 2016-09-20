@@ -1,16 +1,4 @@
 .row
   .col-12-xs
     = form_for(@task_form) do |f|
-      .form-group
-        = f.label :description
-        = f.text_field :description, class: 'form-control'
-      .form-group
-        = f.label :next_action
-        = f.text_field :next_action, class: 'form-control'
-      .form-group
-        = f.label :website
-        = f.text_field :website, class: 'form-control'
-      .form-group
-        = f.label :project
-        = f.text_field :project, class: 'form-control'
-      = f.submit 'Submit', class: 'btn btn-primary'
+      = render partial: 'form', locals: {f: f}

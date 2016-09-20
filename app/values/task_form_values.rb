@@ -1,3 +1,3 @@
 class TaskFormValues < Objection::Base
-  optionals  :description, :next_action, :website, :project
+  optionals :uuid,  :description, :next_action, :website, :project
 end
