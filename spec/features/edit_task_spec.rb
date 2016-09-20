@@ -4,8 +4,8 @@ RSpec.feature 'Edit task', js: true, type: :feature do
   before do
     tasks = File.read(fixture_path + '/pending_tasks.json')
     expect(TaskWarrior::Communicator).to receive(:execute).with('task export +PENDING').exactly(:twice).and_return(tasks)
-    expect(TaskWarrior::Communicator).to receive(:execute).with('task export uuid:35bdb52d-da98-4f85-8229-adcb160c1a9e').exactly(:twice).and_return(tasks)
-    modify_command = 'task uuid:35bdb52d-da98-4f85-8229-adcb160c1a9e modify "blabla"'
+    expect(TaskWarrior::Communicator).to receive(:execute).with('task export uuid:35bdb52d-da98-4f85-8229-adcb160c1a9e').exactly(3).times.and_return(tasks)
+    modify_command = 'task uuid:35bdb52d-da98-4f85-8229-adcb160c1a9e modify "my updated task"'
     expect(TaskWarrior::Communicator).to receive(:execute).with(modify_command)
   end
 

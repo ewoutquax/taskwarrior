@@ -1,10 +1,10 @@
 module TaskWarrior
   module TaskCreator
-    def self.invoke(task_form_value)
-      raise ArgumentError unless task_form_value.is_a?(TaskFormValues)
+    def self.invoke(task_form_values)
+      enforce_argument_type(TaskFormValues, task_form_values)
 
       values = []
-      task_form_value.to_hash.each do |key, value|
+      task_form_values.to_hash.each do |key, value|
         values << if key == :description
                     "\"#{value}\""
                   else

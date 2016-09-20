@@ -8,8 +8,7 @@ class BaseForm
     @params = params
 
     if @params.present?
-      key = self.model_name.name.underscore.to_sym
-      @params.key?(key) && assign_params_to_form
+      form_submitted? && assign_params_to_form
     end
   end
 
@@ -18,6 +17,11 @@ class BaseForm
   end
 
   private
+
+    def form_submitted?
+      key = self.model_name.name.underscore.to_sym
+      @params.key?(key)
+    end
 
     def assign_params_to_form
       params_for_create.each do |field, value|

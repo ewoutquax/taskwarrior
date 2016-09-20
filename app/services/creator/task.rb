@@ -1,12 +1,12 @@
 module Creator
   class Task
-    def initialize(task_form_value)
-      raise ArgumentError unless task_form_value.is_a?(TaskFormValues)
-      @task_form_value = task_form_value
+    def initialize(task_form_values)
+      enforce_argument_type(TaskFormValues, task_form_values)
+      @task_form_values = task_form_values
     end
 
     def invoke
-      TaskWarrior::TaskCreator.invoke(@task_form_value)
+      TaskWarrior::TaskCreator.invoke(@task_form_values)
     end
   end
 end
