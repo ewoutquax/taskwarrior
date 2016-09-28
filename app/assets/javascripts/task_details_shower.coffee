@@ -32,7 +32,7 @@ class @TaskDetailsShower
 
     @list.find('.modal-title').html(data.description)
     @list.find('.next_action').html(data.next_action)
-    @list.find('.mail_body').html(data.mail_body)
+    @list.find('.mail_body').html(data.mail_body.replace(/\n/g, '<br />')) if data.mail_body
     @list.find('.website').html(data.website)
     @list.find('.project').html(data.project)
     @list.find('.created').html(time.short())
